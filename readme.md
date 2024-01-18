@@ -7,6 +7,7 @@ After installation I recommend to obfuscate `shared.lua` file
 # Commands
 
 **antidump install** [optional > resource name]
+
 **antidump uninstall** [optional > resource name]
 
 # Encryption
