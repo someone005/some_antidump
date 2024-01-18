@@ -137,7 +137,7 @@ function uninstall(resource, auto)
         manifest = manifest:gsub("antidump%s*{", 'client_scripts {')
 
         SaveResourceFile(resource, manifestName, manifest, manifest:len())
-        print(("[^3some_antidump^7] ^2Uninstalled antidump in resource %s^7"):format(resource))
+        print(("[^3some_antidump^7] ^2Uninstalled antidump from resource %s^7"):format(resource))
         return true
     else
         return false
