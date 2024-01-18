@@ -24,7 +24,7 @@ RegisterCommand('antidump', function(source, args)
             else
                 local success = install(parameter)
 
-                if not success then
+                if success == false then
                     print(("[^3some_antidump^7] Antidump is already installed in resource %s"):format(parameter))
                 end
             end
@@ -38,7 +38,7 @@ RegisterCommand('antidump', function(source, args)
                 if resource and GetResourceState(resource) ~= 'missing' then
                     found+=1
 
-                    if install(resource) then installed+=1 end
+                    if install(resource, true) then installed+=1 end
                 end
                 ::continue::
             end
@@ -72,7 +72,7 @@ RegisterCommand('antidump', function(source, args)
                 if resource and GetResourceState(resource) ~= 'missing' then
                     found+=1
 
-                    if uninstall(resource) then uninstalled+=1 end
+                    if uninstall(resource, true) then uninstalled+=1 end
                 end
 
                 ::continue::
@@ -83,11 +83,13 @@ RegisterCommand('antidump', function(source, args)
     end
 end)
 
-function install(resource)
+function install(resource, auto)
     local installed, manifestName = checkIfInstalled(resource)
 
     if not installed and not manifestName then
-        print(("[^3some_antidump^7] ^1Couldn't find manifest of resource %s^7"):format(resource))
+        if not auto then
+            print(("[^3some_antidump^7] ^1Couldn't find manifest of resource %s^7"):format(resource))
+        end
         return
     end
 
@@ -117,11 +119,13 @@ function install(resource)
     end
 end
 
-function uninstall(resource)
+function uninstall(resource, auto)
     local installed, manifestName = checkIfInstalled(resource)
 
     if not installed and not manifestName then
-        print(("[^3some_antidump^7] ^1Couldn't find manifest of resource %s^7"):format(resource))
+        if not auto then
+            print(("[^3some_antidump^7] ^1Couldn't find manifest of resource %s^7"):format(resource))
+        end
         return
     end
 
