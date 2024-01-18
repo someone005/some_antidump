@@ -96,6 +96,17 @@ function install(resource)
     if installed then
         return false
     else
+        for i=0, GetNumResourceMetadata(resource, 'client_script')-1 do
+            local data = GetResourceMetadata(resource, 'client_script', i)
+
+            if data then
+                if data:find('%*%*') then
+                    print(("[^3some_antidump^7] ^1Cannot install antidump in resource %s! ^3Globbing ** used in %s^7"):format(resource, data))
+                    return
+                end
+            end
+        end
+
         manifest = fileName .. '\n' .. manifest
         manifest = manifest:gsub("client_script '([^']+)'", 'antidump \'%1\'')
         manifest = manifest:gsub("client_scripts%s*{", 'antidump {')
