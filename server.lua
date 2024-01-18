@@ -45,7 +45,7 @@ RegisterCommand('antidump', function(source, args)
 
             print(("[^3some_antidump^7] Installed antidump to %s/%s scripts"):format(installed, found))
         end
-    else
+    elseif option == 'uninstall' then
         if parameter then
             if myName == parameter then return end
             local state = GetResourceState(parameter)
@@ -80,6 +80,8 @@ RegisterCommand('antidump', function(source, args)
 
             print(("[^3some_antidump^7] Uninstalled antidump from %s/%s scripts"):format(uninstalled, found))
         end
+    else
+        print("[^3some_antidump^7] Wrong option!")
     end
 end)
 
