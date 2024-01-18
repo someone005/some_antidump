@@ -2,6 +2,8 @@
 
 Put some_antidump in your resources folder, start resource and use command in console "antidump install"
 
+After installation I recommend to obfuscate `shared.lua` file
+
 # Commands
 
 **antidump install** [optional > resource name]
