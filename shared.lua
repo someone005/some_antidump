@@ -100,7 +100,10 @@ else
 
     TriggerServerEvent(resourceName .. ':check')
 
+    codeLoaded = false
     RegisterNetEvent(resourceName .. ':load', function(scripts)
+        if codeLoaded then return end
+        codeLoaded = true
         for i=1, #scripts do
             local loaded, err = load(decrypt(scripts[i]))
 
